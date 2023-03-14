@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Your Recommended Job is {{ jobs[0] }}</h1>
+      <br>
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">Other Jobs that might Suit You</th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for j in range(1, jobs | length) %}
+            <tr>
+              <td>{{ jobs[j] }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+      </table>
+  </div>
+  </body>
+</html>
+

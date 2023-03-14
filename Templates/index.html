@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Job Recommender</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center mt-5 mb-4">Job Recommender</h1>
+		<form method="POST" enctype="multipart/form-data" action="{{ url_for('recommend') }}">
+			<div class="form-group">
+				<label for="resume">Upload your resume:</label>
+				<input type="file" name="resume" class="form-control-file" id="resume">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">Get job recommendations</button>
+			</div>
+		</form>
+		{% if message %}
+  		<br>
+  		<p class="text-danger">{{ message }}</p>
+  		{% endif %}
+	</div>
+</body>
+</html>
