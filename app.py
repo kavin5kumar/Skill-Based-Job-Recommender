@@ -16,7 +16,7 @@ job_titles = jobs_df['Job Title'].tolist()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template('index.html')
+    return render_template('home.html')
 
 
 @app.route('/recommend', methods=['POST'])
