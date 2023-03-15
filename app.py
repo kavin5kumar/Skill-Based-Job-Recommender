@@ -4,7 +4,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pdfplumber
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates')
 
 jobs_df = pd.read_csv('job_postings.csv')
 
