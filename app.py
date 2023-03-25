@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request
 import pandas as pd
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pdfplumber
 
-app = Flask(__name__,template_folder='templates')
+app = Flask(__name__)
+
 
 jobs_df = pd.read_csv('job_postings.csv')
 
@@ -17,6 +19,11 @@ job_titles = jobs_df['Job Title'].tolist()
 @app.route('/', methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
+
+
+@app.route('/jrec', methods=['GET', 'POST'])
+def recpage():
+    return render_template('recpage.html')
 
 
 @app.route('/recommend', methods=['POST'])
@@ -45,4 +52,4 @@ def recommend():
 
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
