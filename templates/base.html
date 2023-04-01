@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	<title>Job Recommender</title>
+	<link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='main.css') }}">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+	<header>
+		<div class="container-fluid p-0">
+			<nav class="navbar navbar-expand-lg">
+				<div class="container-fluid">
+				  <a class="navbar-brand" href="{{url_for('home')}}">
+					<p>Job Recommender System</p>
+				  </a>
+				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="navbarNav">
+					<div class="mr-auto"></div>
+					<ul class="navbar-nav">
+					  <li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{url_for('home')}}">Home</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="{{url_for('recpage')}}">Job Recommender</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="{{url_for('about')}}">About</a>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+			  </nav>
+		</div>
+	</header>
+	<main>
+		<div class="container mainz">
+			{% block content %}{% endblock %}
+		</div>
+	</main>
+	<footer></footer>
+
+		
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>
+

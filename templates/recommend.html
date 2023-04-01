@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+{% if jobs[0] == 'Devops Engineer' %}
+  <h1>Your Recommended Job is <a href="{{ url_for('links',ds=1) }}">{{ jobs[0] }}</a></h1>
+{% elif jobs[0] == 'Data Scientist' %}
+  <h1>Your Recommended Job is <a href="{{ url_for('links',ds=2) }}">{{ jobs[0] }}</a></h1>
+{% elif jobs[0] == 'Security Engineer' %}
+  <h1>Your Recommended Job is <a href="{{ url_for('links',ds=3) }}">{{ jobs[0] }}</a></h1>
+{% elif jobs[0] == 'Software Quality Engineer' %}
+  <h1>Your Recommended Job is <a href="{{ url_for('links',ds=4) }}">{{ jobs[0] }}</a></h1>
+{% elif jobs[0] == 'Cloud Engineer' %}
+  <h1>Your Recommended Job is <a href="{{ url_for('links',ds=5) }}">{{ jobs[0] }}</a></h1>
+{% else %}
+  <h1>Your Recommended Job is <a href="{{ url_for('links',ds=6) }}">{{ jobs[0] }}</a></h1>
+{% endif %}
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Other Jobs that might Suit You</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for j in range(1, jobs | length) %}
+    <tr>
+      {% if 'Devops Engineer' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=1) }}">Devops Engineer</a></td>
+      {% elif 'Data Scientist' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=2) }}">Data Scientist</a></td>
+      {% elif 'Security Engineer' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=3) }}">Security Engineer</a></td>
+      {% elif 'Software Quality Engineer' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=4) }}">Software Quality Engineer</a></td>
+      {% elif 'Cloud Engineer' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=5) }}">Cloud Engineer</a></td>
+      {% elif 'Android Developer' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=7) }}">Android Developer</a></td>
+      {% elif 'UX Designer' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=8) }}">UX Designer</a></td>
+      {% elif 'Blockchain Developer' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=9) }}">Blockchain Developer</a></td>
+      {% elif 'Database Engineer' in jobs[j] %}
+        <td><a href="{{ url_for('links',ds=6) }}">Database Engineer</a></td>
+      {% else %}
+        <td>{{ jobs[j] }}</td>
+      {% endif %}
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}
+  
+
