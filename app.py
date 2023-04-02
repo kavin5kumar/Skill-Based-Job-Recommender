@@ -68,7 +68,7 @@ def recommend():
         if resume_text.filename == '':
             flash('No file Uploaded. Upload a file and proceed!')
             return redirect(url_for('recpage'))
-        elif allowed_file(resume_text.filename) == '.pdf' or allowed_file(resume_text.filename) == '.docx':
+        elif allowed_file(resume_text.filename):
             text = resume_text.read().decode('utf-8', errors='ignore')
             resume_matrix = vectorizer.transform([text])
 
