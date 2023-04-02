@@ -4,10 +4,14 @@ import pandas as pd
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import pdfplumber
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2HOLZA"F4Q8z\n\xec]/'
+ALLOWED_EXTENSIONS = {'pdf', 'docx'}
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 jobs_df = pd.read_csv('job_postings_a.csv')
@@ -57,13 +61,14 @@ def links(ds):
 
 @app.route('/recommend', methods=['POST'])
 def recommend():
+
     if request.method == 'POST':
         resume_text = request.files['resume']
         # check if the post request has the file part
         if resume_text.filename == '':
             flash('No file Uploaded. Upload a file and proceed!')
             return redirect(url_for('recpage'))
-        else:
+        elif allowed_file(resume_text.filename) == '.pdf' or allowed_file(resume_text.filename) == '.docx':
             text = resume_text.read().decode('utf-8', errors='ignore')
             resume_matrix = vectorizer.transform([text])
 
@@ -83,6 +88,10 @@ def recommend():
                     result.append(item)
             # render the recommendation results
             return render_template('recommend.html', jobs=result)
+
+        else:
+            flash('Not a PDF or DOCX File. Try Again')
+            return redirect(url_for('recpage'))
 
 
 @app.after_request
