@@ -1,12 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Links to learn for Software Quality Engineer</h1>
-<ul class="qaz">
-    <li><a href="https://roadmap.sh/qa">Complete Roadmap - QA Engineer</a></li>
-    <li><a href="https://medium.com/slalom-build/quality-engineer-learning-roadmap-fddfcb77409e">Quality Engineer Learning Roadmap - Blake Norrish</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLj5VKaW115t1iO0bMWitfs7ECNrV3tIYm">SOFTWARE TESTING BOOTCAMP - TM SQUARE</a></li>
-    <li><a href="https://www.youtube.com/watch?v=sO8eGL6SFsA">Software Testing Full Course In 10 Hours - Edureka!</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLL34mf651faM_nn8uKlnwbQPw5zSh_F84">SOFTWARE TESTING TUTORIAL - Software Testing Mentor</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLZoTAELRMXVPBTrWtJkn3wWQxZkmTXGwe">Software Testing (Tamil) - Test Tamizha</a></li>
+<ul class="qaz list-group list-group-flush">
+    <li class="list-group-item"><a href="https://roadmap.sh/qa">Complete Roadmap - QA Engineer</a></li>
+    <li class="list-group-item"><a href="https://medium.com/slalom-build/quality-engineer-learning-roadmap-fddfcb77409e">Quality Engineer Learning Roadmap - Blake Norrish</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLj5VKaW115t1iO0bMWitfs7ECNrV3tIYm">SOFTWARE TESTING BOOTCAMP - TM SQUARE</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/watch?v=sO8eGL6SFsA">Software Testing Full Course In 10 Hours - Edureka!</a></li>
+    <li class="list-group-item" ><a href="https://www.youtube.com/playlist?list=PLL34mf651faM_nn8uKlnwbQPw5zSh_F84">SOFTWARE TESTING TUTORIAL - Software Testing Mentor</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLZoTAELRMXVPBTrWtJkn3wWQxZkmTXGwe">Software Testing (Tamil) - Test Tamizha</a></li>
 </ul>
+<br/ >
+<h1 class="pb-3">Jobs for Software Quality Engineer</h1>
+<div class="list-group">
+  {% for job in data %}
+  <a href={{ job['job_apply_link'] }} class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ job['job_title'] }}</h5>
+      <small>{{ job['job_posted_at_datetime_utc'][:10] }}</small>
+    </div>
+    <p class="mb-1">{{ job['employer_name'] }}.</p>
+    <small>{{ job['job_publisher'] }}</small>
+  </a>
+  {% endfor %}
+</div>
 {% endblock %}

@@ -6,3 +6,13 @@ ul {
   list-style-type: none;
 }
 
+.color-change {
+	color : rgba(255, 255, 255, 0.5);
+}
+
+.padspace {
+  padding-bottom: 10px;
+}
+
+
+

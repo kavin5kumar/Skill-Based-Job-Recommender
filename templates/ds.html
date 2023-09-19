@@ -1,15 +1,29 @@
-{% extends "base.html" %}
+ {% extends "base.html" %}
 {% block content %}
 <h1>Links to learn for Data Scientist</h1>
-<ul class="qaz">
-    <li><a href="https://www.geeksforgeeks.org/how-to-become-data-scientist-a-complete-roadmap/">Complete Roadmap</a></li>
-    <li><a href="https://github.com/Moataz-Elmesmary/Data-Science-Roadmap">Detailed Roadmap from Github</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3us_ELKYSj_Fth2tIEkdKXvV">Data Science Complete Youtube Playlist - codebasics</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uuKaU2nBDwr6zrSOTzNCs0l">Mathematics and Statistics for Data Science Complete Youtube Playlist - codebasics</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLFCB5Dp81iNVmuoGIqcT5oF4K-7kTI5vp">Data Science  - Keith Galli</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLZoTAELRMXVPBTrWtJkn3wWQxZkmTXGwe">Complete ML Playlist - Krish Naik</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLR4Rlu17MDY7ii4Nz6jT8a4KpfXm5xGfg">Foundations of Data Science (Tamil) - BECAUSE</a></li>
+<ul class="qaz list-group list-group-flush">
+    <li class="list-group-item"><a href="https://www.geeksforgeeks.org/how-to-become-data-scientist-a-complete-roadmap/">Complete Roadmap</a></li>
+    <li class="list-group-item"><a href="https://github.com/Moataz-Elmesmary/Data-Science-Roadmap">Detailed Roadmap from Github</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3us_ELKYSj_Fth2tIEkdKXvV">Data Science Complete Youtube Playlist - codebasics</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLeo1K3hjS3uuKaU2nBDwr6zrSOTzNCs0l">Mathematics and Statistics for Data Science Complete Youtube Playlist - codebasics</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLFCB5Dp81iNVmuoGIqcT5oF4K-7kTI5vp">Data Science  - Keith Galli</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLZoTAELRMXVPBTrWtJkn3wWQxZkmTXGwe">Complete ML Playlist - Krish Naik</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLR4Rlu17MDY7ii4Nz6jT8a4KpfXm5xGfg">Foundations of Data Science (Tamil) - BECAUSE</a></li>
 </ul>
+<br/ >
+<h1 class="pb-3">Jobs for Data Scientistr</h1>
+<div class="list-group">
+  {% for job in data %}
+  <a href={{ job['job_apply_link'] }} class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ job['job_title'] }}</h5>
+      <small>{{ job['job_posted_at_datetime_utc'][:10] }}</small>
+    </div>
+    <p class="mb-1">{{ job['employer_name'] }}.</p>
+    <small>{{ job['job_publisher'] }}</small>
+  </a>
+  {% endfor %}
+</div>
 {% endblock %}
 
 

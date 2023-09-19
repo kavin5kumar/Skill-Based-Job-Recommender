@@ -1,4 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
+
+import requests
+
 import pandas as pd
 
 
@@ -8,10 +11,21 @@ from sklearn.metrics.pairwise import cosine_similarity
 app = Flask(__name__)
 app.secret_key = b'_5#y2HOLZA"F4Q8z\n\xec]/'
 ALLOWED_EXTENSIONS = {'pdf', 'docx'}
+url = "https://jsearch.p.rapidapi.com/search"
 
+headers = {"X-RapidAPI-Key": "43a5b8691fmsh5de5fc34ed72a45p1db322jsn4ff7db5e8e93","X-RapidAPI-Host": "jsearch.p.rapidapi.com"}
+
+pagedict = {1 : ['do.html','Devops developer/Engineer'] , 2 : ['ds.html','Data Scientist'], 3 : ['se.html','Security Engineer'], 4 : ['sqe.html','Software Quality Engineer, Tester'], 5: ['ce.html','Cloud Engineer'], 6 : ['de.html','Back End Developer'], 7 : ['ae.html','Android Developer'], 8 : ['ux.html','UI/UX Designer/Developer'], 9 : ['bc.html','Blockchain Developer']}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def apireq(st):
+    quersa = "Fresher " + st + " in India"
+    querystring = {"query":quersa,"page":"1","num_pages":"1"}
+    response = requests.get(url, headers=headers, params=querystring)
+    return response.json()
+
 
 
 jobs_df = pd.read_csv('job_postings_a.csv')
@@ -39,24 +53,8 @@ def about():
 
 @app.route('/links/<int:ds>', methods=['GET', 'POST'])
 def links(ds):
-    if (ds == 1):
-        return render_template('do.html')
-    elif (ds == 2):
-        return render_template('ds.html')
-    elif (ds == 3):
-        return render_template('se.html')
-    elif (ds == 4):
-        return render_template('sqe.html')
-    elif (ds == 5):
-        return render_template('ce.html')
-    elif (ds == 6):
-        return render_template('de.html')
-    elif (ds == 7):
-        return render_template('ae.html')
-    elif (ds == 8):
-        return render_template('ux.html')
-    elif (ds == 9):
-        return render_template('bc.html')
+    an = apireq(pagedict[ds][1])
+    return render_template(pagedict[ds][0], data = an['data'])
 
 
 @app.route('/recommend', methods=['POST'])

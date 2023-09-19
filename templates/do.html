@@ -1,12 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Links to learn for Devops Engineer</h1>
-<ul class="qaz">
-    <li><a href="https://roadmap.sh/devops">Devops Roadmap</a></li>
-    <li><a href="https://github.com/milanm/DevOps-Roadmap">Detailed Roadmap from Github</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PL9gnSGHSqcnoqBXdMwUTRod4Gi3eac2Ak">DevOps Bootcamp - Kunal Kushwaha</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLWKjhJtqVAbkzvvpY12KkfiIGso9A_Ixs">Devops Full Course - fcc</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLy7NrYWoggjwV7qC4kmgbgtFBsqkrsefG">DevOps Concepts explained  - TechWorld with Nana</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLHyEAfc_mrxY1n7QzCxdgR_-3uDZzt7PR">Tamil DevOps Tutorial For Beginners - Interview DOT</a></li>
+<ul class="qaz list-group list-group-flush">
+    <li class="list-group-item"><a href="https://roadmap.sh/devops">Devops Roadmap</a></li>
+    <li class="list-group-item"><a href="https://github.com/milanm/DevOps-Roadmap">Detailed Roadmap from Github</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PL9gnSGHSqcnoqBXdMwUTRod4Gi3eac2Ak">DevOps Bootcamp - Kunal Kushwaha</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLWKjhJtqVAbkzvvpY12KkfiIGso9A_Ixs">Devops Full Course - fcc</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLy7NrYWoggjwV7qC4kmgbgtFBsqkrsefG">DevOps Concepts explained  - TechWorld with Nana</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLHyEAfc_mrxY1n7QzCxdgR_-3uDZzt7PR">Tamil DevOps Tutorial For Beginners - Interview DOT</a></li>
 </ul>
+
+<br/ >
+<h1 class="pb-3">Jobs for Devops Engineer</h1>
+<div class="list-group">
+  {% for job in data %}
+  <a href={{ job['job_apply_link'] }} class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ job['job_title'] }}</h5>
+      <small>{{ job['job_posted_at_datetime_utc'][:10] }}</small>
+    </div>
+    <p class="mb-1">{{ job['employer_name'] }}.</p>
+    <small>{{ job['job_publisher'] }}</small>
+  </a>
+  {% endfor %}
+</div>
 {% endblock %}

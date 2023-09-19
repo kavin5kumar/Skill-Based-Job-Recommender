@@ -1,11 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Links to learn for Database Engineer</h1>
-<ul class="qaz">
-    <li><a href="https://www.analyticsvidhya.com/blog/2023/01/step-by-step-roadmap-to-become-a-data-engineer-in-2023/">Step-by-Step Roadmap to Become a Data Engineer - Analytics Vidhya</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID">Database Design - Caleb Curry</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PL32BC9C878BA72085">MySQL Database Tutorial - thenewboston</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLQnljOFTspQXjD0HOzN7P2tgzu7scWpl2">Database Engineering - Hussein Nasser</a></li>
-    <li><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRi_CUQ-FXxgzKQ1dwr_ZJWZ">Database - Neso Academy</a></li>
+<ul class="qaz list-group list-group-flush">
+    <li class="list-group-item"><a href="https://www.analyticsvidhya.com/blog/2023/01/step-by-step-roadmap-to-become-a-data-engineer-in-2023/">Step-by-Step Roadmap to Become a Data Engineer - Analytics Vidhya</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PL_c9BZzLwBRK0Pc28IdvPQizD2mJlgoID">Database Design - Caleb Curry</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PL32BC9C878BA72085">MySQL Database Tutorial - thenewboston</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLQnljOFTspQXjD0HOzN7P2tgzu7scWpl2">Database Engineering - Hussein Nasser</a></li>
+    <li class="list-group-item"><a href="https://www.youtube.com/playlist?list=PLBlnK6fEyqRi_CUQ-FXxgzKQ1dwr_ZJWZ">Database - Neso Academy</a></li>
 </ul>
+<br/ >
+<h1 class="pb-3">Jobs for Database Engineer</h1>
+<div class="list-group">
+  {% for job in data %}
+  <a href={{ job['job_apply_link'] }} class="list-group-item list-group-item-action" aria-current="true">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ job['job_title'] }}</h5>
+      <small>{{ job['job_posted_at_datetime_utc'][:10] }}</small>
+    </div>
+    <p class="mb-1">{{ job['employer_name'] }}.</p>
+    <small>{{ job['job_publisher'] }}</small>
+  </a>
+  {% endfor %}
+</div>
 {% endblock %}
